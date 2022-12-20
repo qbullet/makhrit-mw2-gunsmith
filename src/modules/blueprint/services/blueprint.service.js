@@ -5,18 +5,22 @@ class BlueprintService {
   create(payload) {
     return new BlueprintModel(payload).save();
   }
+
   getAll(query) {
     return BlueprintModel.find({ ...query, status: StatusEnum.ACTIVE });
   }
+
   getOneById(id) {
     return BlueprintModel.findOne({ _id: id });
   }
+
   updateById(id, payload) {
     return BlueprintModel.findOneAndUpdate(
       { _id: id },
       { $set: { ...payload } }
     );
   }
+
   deleteById(id) {
     return BlueprintModel.findOneAndUpdate(
       { _id: id },

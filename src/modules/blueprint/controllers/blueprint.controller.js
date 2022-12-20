@@ -20,6 +20,7 @@ const BlueprintController = {
       });
     }
   },
+
   getAllBlueprint: async (req, res) => {
     try {
       const Blueprints = await blueprintService.getAll({
@@ -38,6 +39,7 @@ const BlueprintController = {
       });
     }
   },
+
   getBlueprintByIds: async (req, res) => {
     try {
       const ids = req.params.ids.split(",");
@@ -58,6 +60,7 @@ const BlueprintController = {
       });
     }
   },
+
   editBlueprintById: async (req, res) => {
     try {
       const { id } = req.params;
@@ -76,6 +79,7 @@ const BlueprintController = {
       });
     }
   },
+
   deleteBlueprintById: async (req, res) => {
     try {
       const { id } = req.params;
