@@ -75,18 +75,18 @@ export default {
       description,
       addedBy: {
         id: interaction.user.id,
+        nickname: interaction.member.nickname,
         username: interaction.user.username,
       },
+      guildId: interaction.guildId,
     });
 
-    await interaction.reply(
-      `🎉🎉 ${interaction.member.nickname}'s blueprint has been created the **${blueprint.title}** to complete.`
+    return await interaction.reply(
+      `🎉🎉 ${
+        interaction.member.nickname
+      }'s blueprint has been created (**${blueprint.title.toUpperCase()}**). 📝📝 To complete, please use ** mk:add-bp-image ${
+        blueprint.blueprintTag
+      } ** to add attach your images.`
     );
-
-    await interaction.followUp(
-      `📝📝 Please use ** mk:add-bp-image/${blueprint.blueprintTag} ** to add your attachment image`
-    );
-
-    return;
   },
 };

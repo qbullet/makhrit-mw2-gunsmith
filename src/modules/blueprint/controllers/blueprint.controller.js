@@ -1,12 +1,16 @@
 import BlueprintService from "../services/blueprint.service.js";
 import StatusEnum from "../../../common/status.enum.js";
 
-const blueprintService = new BlueprintService();
+class BlueprintController {
+  blueprintService;
 
-const BlueprintController = {
-  createBlueprint: async (req, res) => {
+  constructor() {
+    this.blueprintService = new BlueprintService();
+  }
+
+  async createBlueprint(req, res) {
     try {
-      const created = await blueprintService.create(req.body);
+      const created = await this.blueprintService.create(req.body);
 
       res.status(201).json({
         success: true,
@@ -19,11 +23,11 @@ const BlueprintController = {
         message: error.message,
       });
     }
-  },
+  }
 
-  getAllBlueprint: async (req, res) => {
+  async getAllBlueprint(req, res) {
     try {
-      const Blueprints = await blueprintService.getAll({
+      const Blueprints = await this.blueprintService.getAll({
         status: StatusEnum.ACTIVE,
       });
 
@@ -38,12 +42,12 @@ const BlueprintController = {
         message: error.message,
       });
     }
-  },
+  }
 
-  getBlueprintByIds: async (req, res) => {
+  async getBlueprintByIds(req, res) {
     try {
       const ids = req.params.ids.split(",");
-      const Blueprints = await blueprintService.getAll({
+      const Blueprints = await this.blueprintService.getAll({
         _id: { $in: ids },
         status: StatusEnum.ACTIVE,
       });
@@ -59,13 +63,13 @@ const BlueprintController = {
         message: error.message,
       });
     }
-  },
+  }
 
-  editBlueprintById: async (req, res) => {
+  async editBlueprintById(req, res) {
     try {
       const { id } = req.params;
       const payload = req.body;
-      const updated = await blueprintService.updateById(id, payload);
+      const updated = await this.blueprintService.updateById(id, payload);
 
       res.status(200).json({
         success: true,
@@ -78,12 +82,12 @@ const BlueprintController = {
         message: error.message,
       });
     }
-  },
+  }
 
-  deleteBlueprintById: async (req, res) => {
+  async deleteBlueprintById(req, res) {
     try {
       const { id } = req.params;
-      const updated = await blueprintService.deleteById(id);
+      const updated = await this.blueprintService.deleteById(id);
 
       res.status(200).json({
         success: true,
@@ -96,7 +100,7 @@ const BlueprintController = {
         message: error.message,
       });
     }
-  },
-};
+  }
+}
 
 export default BlueprintController;

@@ -1,12 +1,13 @@
-import express  from 'express'
-import BlueprintController from './controllers/blueprint.controller.js'
+import express from "express";
+import BlueprintController from "./controllers/blueprint.controller.js";
 
-const router = express.Router()
+const router = express.Router();
+const blueprintService = new BlueprintController();
 
-router.post('/', BlueprintController.createBlueprint)
-router.get('/', BlueprintController.getAllBlueprint)
-router.get('/:ids', BlueprintController.getBlueprintByIds)
-router.patch('/:id', BlueprintController.editBlueprintById)
-router.delete('/:id', BlueprintController.deleteBlueprintById)
+router.post("/", blueprintService.createBlueprint);
+router.get("/", blueprintService.getAllBlueprint);
+router.get("/:ids", blueprintService.getBlueprintByIds);
+router.patch("/:id", blueprintService.editBlueprintById);
+router.delete("/:id", blueprintService.deleteBlueprintById);
 
-export default router
+export default router;

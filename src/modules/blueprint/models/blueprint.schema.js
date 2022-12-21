@@ -1,15 +1,17 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
 import AutoIncrement from "../../../plugins/increment.plugin.js";
 
 import StatusEnum from "../../../common/status.enum.js";
 import Config from "../config/blueprint.config.js";
 
-const { Schema, model } = mongoose;
-
 const AddedBySchema = new Schema(
   {
     id: {
+      type: String,
+      required: true,
+    },
+    nickname: {
       type: String,
       required: true,
     },
@@ -35,6 +37,7 @@ const BlueprintSchema = new Schema(
     imageUrls: {
       type: [String],
       default: [],
+      max: 6,
     },
     category: {
       type: String,
@@ -52,6 +55,10 @@ const BlueprintSchema = new Schema(
     addedBy: {
       type: AddedBySchema,
       default: null,
+    },
+    guildId: {
+      type: String,
+      required: true,
     },
     status: {
       type: String,

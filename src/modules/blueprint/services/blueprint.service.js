@@ -14,6 +14,10 @@ class BlueprintService {
     return BlueprintModel.findOne({ _id: id });
   }
 
+  getOne(query) {
+    return BlueprintModel.findOne(query);
+  }
+
   updateById(id, payload) {
     return BlueprintModel.findOneAndUpdate(
       { _id: id },

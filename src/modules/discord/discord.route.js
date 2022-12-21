@@ -4,7 +4,9 @@ import DiscordController from "./controllers/discord.controller.js";
 import AppVariables from "../../config/app.variables.js";
 import CollectionCommands from "./commands/index.js";
 
+const discordController = new DiscordController();
 const collectionCommands = new CollectionCommands();
+
 const DiscordClient = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -28,11 +30,11 @@ DiscordClient.on("ready", () => {
 DiscordClient.on(Events.InteractionCreate, (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  return DiscordController.interactionEventHandler(interaction);
+  return discordController.interactionEventHandler(interaction);
 });
 
 DiscordClient.on(Events.MessageCreate, (message) => {
-  return DiscordController.messageEventHandler(DiscordClient, message);
+  return discordController.messageEventHandler(DiscordClient, message);
 });
 
 DiscordClient.login(AppVariables.DISCORD_BOT_TOKEN);

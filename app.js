@@ -10,12 +10,12 @@ app.use(AppMiddleware);
 app.use(AppRouter);
 
 app.get("/", (req, res) => {
-  res.send("Makhrit is ready to serve you..");
+  res.send("Makhit is ready to serve you..");
 });
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {
-  console.log(`Makhrit [http] is running on port [${PORT}]`);
+  console.log(`Makhit [http] is running on port [${PORT}]`);
 });
 
 export default app;
